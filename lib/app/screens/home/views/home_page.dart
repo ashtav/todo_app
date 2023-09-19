@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/core/constants/value.dart';
 import 'package:todo_app/app/core/extensions/riverpod_extension.dart';
 import 'package:todo_app/app/screens/support/views/support_view.dart';
 import 'package:todo_app/app/screens/todo/views/todo_view.dart';
@@ -14,12 +15,9 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Widget> pages = const [
-      HomeView(),
-      TodoView(),
-      SupportView(),
-      AccountView()
-    ];
+    globalContext = context;
+
+    List<Widget> pages = const [HomeView(), TodoView(), SupportView(), AccountView()];
 
     return Scaffold(
         body: appStateProvider.watch((state) => Stack(
@@ -48,11 +46,9 @@ class HomePage extends ConsumerWidget {
             (state) => Stack(
               children: [
                 Intrinsic(
-                  children: [Ti.home, Ti.note, Ti.message2, Ti.user]
-                      .generate((icon, i) {
+                  children: [Ti.home, Ti.note, Ti.message2, Ti.user].generate((icon, i) {
                     bool isActive = state.page == i;
-                    Color colorActive =
-                        isActive ? Colors.black87 : Colors.black45;
+                    Color colorActive = isActive ? Colors.black87 : Colors.black45;
 
                     return Expanded(
                         child: InkTouch(

@@ -28,7 +28,13 @@ class Auth with ChangeNotifier, UseApi {
         if (token != null) {
           if (!context.mounted) return;
 
+          // set token to dio
+          dio.setToken(token);
+
+          // save token to shared preferences
           prefs.setString('token', token);
+
+          // go to home
           context.go(Paths.home);
         }
       }

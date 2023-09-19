@@ -29,7 +29,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
-  fetchly: ^0.0.1
+  fetchly: 
+    git:
+      url: https://github.com/ashtav/fetchly.git
+      ref: master
   flutter:
     sdk: flutter
   go_router: ^10.1.2

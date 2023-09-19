@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/routes/paths.dart';
+
+import '../../../data/services/local/storage.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -21,7 +25,16 @@ class AccountView extends StatelessWidget {
             style: Gfont.fs18.bold,
             margin: Ei.only(b: 10, t: 25),
           ),
-          Text(Faker.words(15), textAlign: Ta.center),
+          Textr(Faker.words(15), textAlign: Ta.center, margin: Ei.only(b: 25)),
+
+          LzButton(
+            text: 'Logout',
+            icon: Ti.arrowLeft,
+            onTap: (state){
+              prefs.remove('token');
+              context.go(Paths.login);
+            }
+          )
         ],
       ).padding(all: 20),
     ));

@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lazyui/lazyui.dart';
 
 import 'todo/todo_provider.dart';
 
@@ -13,9 +14,9 @@ class AppStateNotifier extends StateNotifier<AppState> {
 
     switch (index) {
       case 1:
-        // if (!visited.contains(index)) {
-        ref.read(todoProvider.notifier).getTodos();
-        // }
+        if (!visited.contains(index)) {
+          ref.read(todoProvider.notifier).getTodos();
+        }
         break;
       default:
     }
@@ -38,7 +39,10 @@ class AppState {
   }
 }
 
-final appStateProvider =
-    StateNotifierProvider<AppStateNotifier, AppState>((ref) {
+final appStateProvider = StateNotifierProvider.autoDispose<AppStateNotifier, AppState>((ref) {
+  ref.onDispose(() {
+    logg('app state disposed');
+  });
+
   return AppStateNotifier(ref);
 });

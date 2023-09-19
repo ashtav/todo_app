@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazyui/lazyui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/app/core/helpers/request_handler.dart';
 import 'package:todo_app/app/data/services/local/storage.dart';
 
 import 'app/core/constants/theme.dart';
@@ -17,21 +18,15 @@ void main() async {
 
   // init shared preferences
   prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString('token');
 
   // init dio, we customize it with the name "fetchly"
-  UseFetchly(
+  Fetchly.instance.init(
       baseUrl: 'https://api.igsa.pw/api/',
-      onRequest: (status, data) {
-        if (status == 401) {
-          logg('unauthorized');
-        }
-      }).init();
+      onRequest: RequestHandler.onRequest).setHeader({'Authorization': 'Bearer $token'}, merge: true);
 
-  // check token
-  String? token = prefs.getString('token');
-  if (token != null) {
-    UseFetchly().setToken(token);
-  }
+  // NOTE: kamu juga bisa membuat file sendiri untuk menjalankan kode pada bagian ini
+  // sehingga file main.dart ini tidak terlalu panjang
 
   // init provider and run app
   runApp(const ProviderScope(child: MyApp()));

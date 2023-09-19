@@ -132,10 +132,11 @@ packages:
   fetchly:
     dependency: "direct main"
     description:
-      name: fetchly
-      sha256: "099b505c58ecc4c3288b23cdca27d19db951b71abe8112ebbbb942bb8b8c48bd"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "6996e5569653e04e596ec41e7e157ebbbd2a5fde"
+      url: "https://github.com/ashtav/fetchly.git"
+    source: git
     version: "0.0.1"
   ffi:
     dependency: transitive
