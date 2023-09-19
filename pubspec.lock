@@ -132,12 +132,11 @@ packages:
   fetchly:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "6996e5569653e04e596ec41e7e157ebbbd2a5fde"
-      url: "https://github.com/ashtav/fetchly.git"
-    source: git
-    version: "0.0.1"
+      name: fetchly
+      sha256: "04ae10d5603773bf6bdba3b1f4895359e3e0c1c11df36da85283e8f5d40a18db"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   ffi:
     dependency: transitive
     description:
@@ -229,10 +228,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "5668e6d3dbcb2d0dfa25f7567554b88c57e1e3f3c440b672b24d4a9477017d5b"
+      sha256: e1a30a66d734f9e498b1b6522d6a75ded28242bad2359a9158df38a1c30bcf1f
       url: "https://pub.dev"
     source: hosted
-    version: "10.1.2"
+    version: "10.2.0"
   google_fonts:
     dependency: transitive
     description:
@@ -285,10 +284,10 @@ packages:
     dependency: "direct main"
     description:
       name: lazyui
-      sha256: "86200091333222c3f7cde25393bd5af15f2cbae1a4256b4c1fd09c1760670e04"
+      sha256: "2f990063f94543543d30c7262a3a21c9d146c12a0e961f2e816fc4d84796d45a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.9"
+    version: "1.0.10"
   lints:
     dependency: transitive
     description:
@@ -674,10 +673,10 @@ packages:
     dependency: transitive
     description:
       name: win32_registry
-      sha256: e4506d60b7244251bc59df15656a3093501c37fb5af02105a944d73eb95be4c9
+      sha256: "41fd8a189940d8696b1b810efb9abcf60827b6cbfab90b0c43e8439e3a39d85a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   xdg_directories:
     dependency: transitive
     description:

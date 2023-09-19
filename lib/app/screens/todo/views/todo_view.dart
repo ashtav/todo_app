@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/core/extensions/riverpod_extension.dart';
 import 'package:todo_app/app/providers/todo/todo_provider.dart';
 
-class TodoView extends StatelessWidget {
+class TodoView extends ConsumerWidget {
   const TodoView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Todo'),
@@ -16,10 +17,9 @@ class TodoView extends StatelessWidget {
             const Icon(Ti.plus).onPressed(() {})
           ],
         ),
-        body: Consumer(builder: (context, ref, child) {
-          final value = ref.watch(todoProvider);
 
-          return value.when(
+        body: todoProvider.watch((value) {
+            return value.when(
               data: (data) {
                 if (data.isEmpty) {
                   return const LzNoData(message: 'No data found, please add new.');
@@ -66,6 +66,15 @@ class TodoView extends StatelessWidget {
                     message: 'Error: $e',
                   ),
               loading: () => LzLoader.bar(message: 'Loading...'));
-        }));
+        }),
+
+
+        // body: Consumer(builder: (context, ref, child) {
+        //   final value = ref.watch(todoProvider);
+
+        
+        // })
+        
+        );
   }
 }

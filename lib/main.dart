@@ -21,12 +21,14 @@ void main() async {
   String? token = prefs.getString('token');
 
   // init dio, we customize it with the name "fetchly"
-  Fetchly.instance.init(
+  Fetchly.init(
       baseUrl: 'https://api.igsa.pw/api/',
-      onRequest: RequestHandler.onRequest).setHeader({'Authorization': 'Bearer $token'}, merge: true);
+      onRequest: RequestHandler.onRequest);
+
+  dio.setToken(token);
 
   // NOTE: kamu juga bisa membuat file sendiri untuk menjalankan kode pada bagian ini
-  // sehingga file main.dart ini tidak terlalu panjang
+  // sehingga file main.dart ini terlihat lebih bersih
 
   // init provider and run app
   runApp(const ProviderScope(child: MyApp()));

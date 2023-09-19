@@ -1,5 +1,4 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lazyui/lazyui.dart';
 
 import 'todo/todo_provider.dart';
 
@@ -40,9 +39,5 @@ class AppState {
 }
 
 final appStateProvider = StateNotifierProvider.autoDispose<AppStateNotifier, AppState>((ref) {
-  ref.onDispose(() {
-    logg('app state disposed');
-  });
-
   return AppStateNotifier(ref);
 });
