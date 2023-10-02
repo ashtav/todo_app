@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/core/constants/font.dart';
 import 'package:todo_app/app/core/extensions/riverpod_extension.dart';
 import 'package:todo_app/app/providers/todo/todo_provider.dart';
+import 'package:todo_app/app/routes/paths.dart';
 
 class TodoView extends ConsumerWidget {
   const TodoView({super.key});
@@ -10,71 +13,60 @@ class TodoView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Todo'),
-          centerTitle: true,
-          actions: [
-            const Icon(Ti.plus).onPressed(() {})
-          ],
+      appBar: AppBar(
+        title: Text(
+          'Todo',
+          style: Gfont.color(Colors.black).fsize(20),
         ),
-
-        body: todoProvider.watch((value) {
-            return value.when(
-              data: (data) {
-                if (data.isEmpty) {
-                  return const LzNoData(message: 'No data found, please add new.');
-                }
-
-                return Refreshtor(
-                  onRefresh: () => ref.read(todoProvider.notifier).getTodos(),
-                  child: ListView(
-                    physics: BounceScroll(),
-                    padding: Ei.all(20),
-                    children: data.generate((item, i) {
-                      final key = GlobalKey();
-                
-                      return SlideUp(
-                        delay: i * 150,
-                        child: InkTouch(
-                          onTap: () {
-                            DropX.show(key,
-                                options: ['Edit', 'Delete'].options(icons: [
-                                  Ti.pencil,
-                                  Ti.trash
-                                ], dangers: [
-                                  1
-                                ], options: {
-                                  1: ['Cancel', 'Confirm'].options(pops: [0], dangers: [1])
-                                }), onSelect: (value) {
-                              if (value.option == 'Edit') {}
-                            });
-                          },
-                          padding: Ei.all(20),
-                          border: Br.only(['t'], except: i == 0),
-                          color: Colors.white,
-                          child: Row(
-                            mainAxisAlignment: Maa.spaceBetween,
-                            children: [Text(item.title ?? ''), Icon(Ti.dotsVertical, color: Colors.black45, key: key)],
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                );
+        actions: [
+          IconButton(
+              onPressed: () {
+                ref.read(todoProvider.notifier).getTodos();
               },
-              error: (e, s) => LzNoData(
-                    message: 'Error: $e',
+              icon: const Icon(TablerIcons.refresh)),
+          IconButton(
+              onPressed: () {
+                context.push(Paths.formTodo);
+              },
+              icon: const Icon(TablerIcons.plus))
+        ],
+      ),
+      body: todoProvider.watch((value) {
+        return value.when(
+            data: (data) {
+              if (data.isEmpty) {
+                return const Center(child: Text('No data found, please add new.'));
+              }
+
+              return ListView(
+                padding: const EdgeInsets.all(20),
+                children: List.generate(data.length, (i) {
+                  final key = GlobalKey();
+                  final item = data[i];
+
+                  return InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(item.title ?? ''),
+                          Icon(TablerIcons.dots_vertical, color: Colors.black45, key: key)
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+              );
+            },
+            error: (e, s) => Center(
+                  child: Text(
+                    'Error: $e',
                   ),
-              loading: () => LzLoader.bar(message: 'Loading...'));
-        }),
-
-
-        // body: Consumer(builder: (context, ref, child) {
-        //   final value = ref.watch(todoProvider);
-
-        
-        // })
-        
-        );
+                ),
+            loading: () => const Center(child: Text('Loading...')));
+      }),
+    );
   }
 }

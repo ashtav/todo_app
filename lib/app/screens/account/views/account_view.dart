@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/core/constants/font.dart';
 import 'package:todo_app/app/routes/paths.dart';
 
 import '../../../data/services/local/storage.dart';
@@ -13,30 +14,26 @@ class AccountView extends StatelessWidget {
     return Scaffold(
         body: Center(
       child: Column(
-        mainAxisAlignment: Maa.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Ti.user,
+          const Icon(
+            TablerIcons.user,
             size: 50,
-            color: LzColors.black,
+            color: Colors.black,
           ),
-          Textr(
+          Text(
             'Account View',
             style: Gfont.fs18.bold,
-            margin: Ei.only(b: 10, t: 25),
           ),
-          Textr(Faker.words(15), textAlign: Ta.center, margin: Ei.only(b: 25)),
-
-          LzButton(
-            text: 'Logout',
-            icon: Ti.arrowLeft,
-            onTap: (state){
+          ElevatedButton(
+            onPressed: () {
               prefs.remove('token');
               context.go(Paths.login);
-            }
+            },
+            child: const Text('Logout'),
           )
         ],
-      ).padding(all: 20),
+      ),
     ));
   }
 }

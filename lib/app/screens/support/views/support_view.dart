@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lazyui/lazyui.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
+import 'package:todo_app/app/core/constants/font.dart';
 
 class SupportView extends StatelessWidget {
   const SupportView({super.key});
@@ -8,22 +9,19 @@ class SupportView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Column(
-        mainAxisAlignment: Maa.center,
-        children: [
-          Icon(
-            Ti.message2,
-            size: 50,
-            color: LzColors.black,
-          ),
-          Textr(
-            'Support View',
-            style: Gfont.fs18.bold,
-            margin: Ei.only(b: 10, t: 25),
-          ),
-          Text(Faker.words(15), textAlign: Ta.center),
-        ],
-      ).padding(all: 20),
-    ));
+            child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          TablerIcons.message_2,
+          size: 50,
+          color: Colors.black,
+        ),
+        Text(
+          'Support View',
+          style: Gfont.fs18.bold,
+        ),
+      ],
+    )));
   }
 }

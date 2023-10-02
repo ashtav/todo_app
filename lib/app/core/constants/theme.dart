@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lazyui/lazyui.dart';
+import 'package:todo_app/app/core/constants/font.dart';
 
 ThemeData appTheme = ThemeData(
   useMaterial3: false,
