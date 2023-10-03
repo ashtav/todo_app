@@ -8,20 +8,30 @@ class SupportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          TablerIcons.message_2,
-          size: 50,
-          color: Colors.black,
-        ),
-        Text(
-          'Support View',
-          style: Gfont.fs18.bold,
-        ),
-      ],
-    )));
+        body: Container(
+      padding: const EdgeInsets.all(35),
+      child: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            TablerIcons.message_2,
+            size: 50,
+            color: Colors.black87,
+          ),
+          const SizedBox(height: 25),
+          Text(
+            'Support View',
+            style: Gfont.fs18.bold,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            'Lorem ipsum dolor sit amet consectetur adipiscing elit magna aliqua.',
+            style: Gfont.muted,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      )),
+    ));
   }
 }

@@ -12,6 +12,8 @@ class LoginView extends ConsumerWidget {
     final notifier = ref.read(authProvider.notifier);
     final email = notifier.email, password = notifier.password;
 
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return Scaffold(
         body: Center(
       child: SizedBox(
@@ -24,19 +26,60 @@ class LoginView extends ConsumerWidget {
             Column(
               children: [
                 Text('Please login to continue', style: Gfont.fs18.bold),
+                const SizedBox(height: 5),
                 Text('Lorem ipsum dolor sit amet consectetur adipiscing elit.',
                     textAlign: TextAlign.center, style: Gfont.muted),
               ],
             ),
 
-            // form input
-            TextField(controller: email),
-            TextField(controller: password),
+            const SizedBox(height: 50),
+
+            Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  // text input email
+                  TextFormField(
+                    validator: (String? arg) {
+                      if (arg!.length < 3) {
+                        return 'Email must be more than 2 charater';
+                      }
+                      return null;
+                    },
+                    controller: email,
+                    decoration: const InputDecoration(hintText: 'Type your email address'),
+                    onSaved: (String? val) {
+                      email.text = val ?? '';
+                    },
+                  ),
+
+                  // text input password
+                  TextFormField(
+                    validator: (String? arg) {
+                      if (arg!.length < 6) {
+                        return 'Password must be more than 6 charater';
+                      }
+                      return null;
+                    },
+                    controller: password,
+                    decoration: const InputDecoration(hintText: 'Type your password'),
+                    onSaved: (String? val) {
+                      password.text = val ?? '';
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 15),
 
             // form button
             ElevatedButton(
               onPressed: () {
-                notifier.login(context);
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState?.save();
+                  notifier.login(context);
+                }
               },
               child: const Text('Login'),
             )

@@ -12,19 +12,29 @@ class AccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Column(
+        body: Container(
+      padding: const EdgeInsets.all(35),
+      child: Center(
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(
             TablerIcons.user,
             size: 50,
-            color: Colors.black,
+            color: Colors.black87,
           ),
+          const SizedBox(height: 25),
           Text(
-            'Account View',
+            'Home View',
             style: Gfont.fs18.bold,
           ),
+          const SizedBox(height: 5),
+          Text(
+            'Lorem ipsum dolor sit amet consectetur adipiscing elit magna aliqua.',
+            style: Gfont.muted,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 25),
           ElevatedButton(
             onPressed: () {
               prefs.remove('token');
@@ -33,7 +43,7 @@ class AccountView extends StatelessWidget {
             child: const Text('Logout'),
           )
         ],
-      ),
+      )),
     ));
   }
 }
