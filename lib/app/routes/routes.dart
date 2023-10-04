@@ -1,15 +1,17 @@
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/app/screens/home/views/home_page.dart';
-import 'package:todo_app/app/screens/login/views/login_view.dart';
+import 'package:todo_app/app/screens/todo/views/form_todo_view.dart';
 
+import '../data/models/todo.dart';
 import '../data/services/local/storage.dart';
+import 'helper.dart';
 import 'paths.dart';
-import 'extension.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
-    const HomePage().route(Paths.home, redirect: (_, __) => _redirect()),
-    const LoginView().route(Paths.login),
+    Route.set(Paths.home, (state) => const HomePage(), redirect: (_) => _redirect()),
+    Route.set(Paths.login, (state) => const HomePage()),
+    Route.set(Paths.formTodo, (state) => FormTodoView(data: state.extra as Todo?)),
   ],
 );
 

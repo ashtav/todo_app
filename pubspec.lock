@@ -284,10 +284,10 @@ packages:
     dependency: "direct main"
     description:
       name: lazyui
-      sha256: "2f990063f94543543d30c7262a3a21c9d146c12a0e961f2e816fc4d84796d45a"
+      sha256: "1758f474f2c74120692a7587b2bdfee02487ec9156388648392a54c428f29848"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.10"
+    version: "1.0.12"
   lints:
     dependency: transitive
     description:
