@@ -38,6 +38,7 @@ class AppState {
   }
 }
 
-final appStateProvider = StateNotifierProvider.autoDispose<AppStateNotifier, AppState>((ref) {
+final appStateProvider =
+    StateNotifierProvider.autoDispose<AppStateNotifier, AppState>((ref) {
   return AppStateNotifier(ref);
 });

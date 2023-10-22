@@ -13,7 +13,8 @@ import '../../data/services/local/storage.dart';
 import '../../routes/paths.dart';
 
 class Auth with ChangeNotifier, UseApi {
-  final email = TextEditingController(text: 'admin@gmail.com'), password = TextEditingController(text: 'secret');
+  final email = TextEditingController(text: 'admin@gmail.com'),
+      password = TextEditingController(text: 'secret');
 
   Future login(BuildContext context) async {
     try {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:todo_app/app/core/constants/font.dart';
+import 'package:todo_app/app/data/services/firebase/app_remote.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -30,6 +31,12 @@ class HomeView extends StatelessWidget {
             style: Gfont.muted,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 25),
+          ElevatedButton(
+              onPressed: () {
+                AppRemote.init();
+              },
+              child: const Text('Generate App Remote'))
         ],
       )),
     ));

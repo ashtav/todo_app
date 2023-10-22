@@ -11,8 +11,9 @@ class AppbarWidget extends StatelessWidget {
         child: Align(
       alignment: Alignment.topCenter,
       child: Container(
-          decoration:
-              const BoxDecoration(color: Colors.white, border: Border(bottom: BorderSide(color: Colors.black12))),
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(bottom: BorderSide(color: Colors.black12))),
           padding: EdgeInsets.only(top: viewPadding.top, left: 20),
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

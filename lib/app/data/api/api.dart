@@ -7,7 +7,7 @@ part 'todo_api.dart';
 
 BaseOptions dioOptions({String? baseUrl}) => BaseOptions(
     followRedirects: false,
-    baseUrl: 'https://api.igsa.pw/api/',
+    baseUrl: 'https://jsonplaceholder.typicode.com/',
     connectTimeout: const Duration(seconds: 60),
     receiveTimeout: const Duration(seconds: 200),
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},

@@ -5,21 +5,25 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/app/core/helpers/toast.dart';
 import 'package:todo_app/app/data/api/api.dart';
 
-import '../../data/models/todo.dart';
+import '../../data/models/todo1.dart';
 
-class TodoNotifier extends StateNotifier<AsyncValue<List<Todo>>> with UseApi {
-  TodoNotifier() : super(const AsyncValue.data([]));
+class TodoNotifier extends StateNotifier<AsyncValue<List<Todo1>>> with UseApi {
+  TodoNotifier() : super(const AsyncValue.loading());
 
   final title = TextEditingController(), description = TextEditingController();
 
   Future getTodos() async {
-    state = const AsyncValue.loading();
-    final res = await todoApi.getTodos();
+    try {
+      state = const AsyncValue.loading();
+      final res = await todoApi.getTodos();
 
-    if (res.statusCode == 200) {
-      final map = json.decode(res.data);
-      List data = map?['data']?['data'] ?? [];
-      state = AsyncValue.data(data.map((e) => Todo.fromJson(e)).toList());
+      if (res.statusCode == 200) {
+        final map = json.decode(res.data);
+        List data = map ?? [];
+        state = AsyncValue.data(data.map((e) => Todo1.fromJson(e)).toList());
+      }
+    } catch (e, s) {
+      print('Error: $e, $s');
     }
   }
 
@@ -36,7 +40,7 @@ class TodoNotifier extends StateNotifier<AsyncValue<List<Todo>>> with UseApi {
     if (res.statusCode == 200) {
       final map = json.decode(res.data);
       final data = map?['data'] ?? {};
-      final todo = Todo.fromJson(data);
+      final todo = Todo1.fromJson(data);
 
       state.whenData((value) {
         state = AsyncValue.data([...value, todo]);
@@ -47,6 +51,6 @@ class TodoNotifier extends StateNotifier<AsyncValue<List<Todo>>> with UseApi {
   }
 }
 
-final todoProvider = StateNotifierProvider.autoDispose<TodoNotifier, AsyncValue<List<Todo>>>((ref) {
+final todoProvider = StateNotifierProvider.autoDispose<TodoNotifier, AsyncValue<List<Todo1>>>((ref) {
   return TodoNotifier();
 });

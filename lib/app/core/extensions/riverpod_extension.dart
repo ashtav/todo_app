@@ -3,7 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // AutoDisposeStateNotifierProvider<AdditionExerciseNotifier, ExerciseState>
 
-extension CustomExtension<NotifierT extends StateNotifier<StateT>, StateT> on StateNotifierProvider<NotifierT, StateT> {
+extension CustomExtension<NotifierT extends StateNotifier<StateT>, StateT>
+    on StateNotifierProvider<NotifierT, StateT> {
   /// Create a widget that watches the state provided by [StateNotifierProvider] and rebuilds when it changes.
   /// This extension simplifies the process of watching the provider's state and building widgets based on its value.
   ///
@@ -25,7 +26,8 @@ extension CustomExtension<NotifierT extends StateNotifier<StateT>, StateT> on St
   }
 }
 
-extension AutoDisposeStateNotifierProviderExtension<T> on AutoDisposeStateNotifierProvider<StateNotifier<T>, T> {
+extension AutoDisposeStateNotifierProviderExtension<T>
+    on AutoDisposeStateNotifierProvider<StateNotifier<T>, T> {
   /// This extension is used to watch the state of an AutoDisposeStateNotifierProvider
   ///
   /// ``` dart

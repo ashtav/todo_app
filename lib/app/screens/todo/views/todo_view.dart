@@ -45,13 +45,20 @@ class TodoView extends ConsumerWidget {
                   final item = data[i];
 
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.push(Paths.todoDetail, extra: item);
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(item.title ?? ''),
+                          Flexible(
+                            child: Text(
+                              item.title ?? '',
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                           Icon(TablerIcons.dots_vertical, color: Colors.black45, key: key)
                         ],
                       ),

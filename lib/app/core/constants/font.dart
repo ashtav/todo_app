@@ -49,7 +49,8 @@ class Gfont {
 
   static final TextStyle bold = gfont.copyWith(fontWeight: FontWeight.bold);
   static final TextStyle normal = gfont.copyWith(fontWeight: FontWeight.normal);
-  static final TextStyle muted = gfont.copyWith(fontWeight: FontWeight.normal, color: Colors.black54);
+  static final TextStyle muted =
+      gfont.copyWith(fontWeight: FontWeight.normal, color: Colors.black54);
 
   /// Creates a custom text style with the specified font size.
   ///
@@ -88,7 +89,8 @@ class Gfont {
   /// )
   /// ```
 
-  static TextStyle fbold(bool value) => gfont.copyWith(fontWeight: value ? FontWeight.bold : FontWeight.normal);
+  static TextStyle fbold(bool value) =>
+      gfont.copyWith(fontWeight: value ? FontWeight.bold : FontWeight.normal);
 }
 
 /// The `TextStyleExtension` extension provides a set of convenience methods
@@ -115,7 +117,8 @@ extension TextStyleExtension on TextStyle {
   ///   style: myTextStyle.bold,
   /// )
   /// ```
-  TextStyle get bold => copyWith(fontWeight: FontWeight.bold, color: color, fontSize: fontSize);
+  TextStyle get bold =>
+      copyWith(fontWeight: FontWeight.bold, color: color, fontSize: fontSize);
 
   /// Creates a copy of the text style with a normal (regular) font weight.
   ///
@@ -181,7 +184,8 @@ extension TextStyleExtension on TextStyle {
   ///   style: myTextStyle.fopacity(0.7),
   /// )
   /// ```
-  TextStyle fopacity(double opacity) => copyWith(color: color?.withOpacity(opacity));
+  TextStyle fopacity(double opacity) =>
+      copyWith(color: color?.withOpacity(opacity));
 
   /// Creates a copy of the text style with a custom font weight.
   ///
@@ -193,5 +197,6 @@ extension TextStyleExtension on TextStyle {
   ///   style: myTextStyle.fbold(true),
   /// )
   /// ```
-  TextStyle fbold(bool value) => copyWith(fontWeight: value ? FontWeight.bold : FontWeight.normal);
+  TextStyle fbold(bool value) =>
+      copyWith(fontWeight: value ? FontWeight.bold : FontWeight.normal);
 }

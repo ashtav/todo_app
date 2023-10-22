@@ -17,8 +17,18 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     globalContext = context;
 
-    List<IconData> icons = [TablerIcons.home, TablerIcons.note, TablerIcons.message_2, TablerIcons.user];
-    List<Widget> pages = const [HomeView(), TodoView(), SupportView(), AccountView()];
+    List<IconData> icons = [
+      TablerIcons.home,
+      TablerIcons.note,
+      TablerIcons.message_2,
+      TablerIcons.user
+    ];
+    List<Widget> pages = const [
+      HomeView(),
+      TodoView(),
+      SupportView(),
+      AccountView()
+    ];
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -43,7 +53,8 @@ class HomePage extends ConsumerWidget {
               );
             }))),
         bottomNavigationBar: Container(
-          decoration: const BoxDecoration(border: Border(top: BorderSide(color: Colors.black12))),
+          decoration: const BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.black12))),
           child: appStateProvider.watch(
             (state) => Stack(
               children: [
@@ -51,7 +62,8 @@ class HomePage extends ConsumerWidget {
                     child: Row(
                   children: List.generate(icons.length, (i) {
                     bool isActive = state.page == i;
-                    Color colorActive = isActive ? Colors.black87 : Colors.black45;
+                    Color colorActive =
+                        isActive ? Colors.black87 : Colors.black45;
                     IconData icon = icons[i];
 
                     return Expanded(

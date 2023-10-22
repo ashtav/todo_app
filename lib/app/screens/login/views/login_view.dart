@@ -47,7 +47,8 @@ class LoginView extends ConsumerWidget {
                       return null;
                     },
                     controller: email,
-                    decoration: const InputDecoration(hintText: 'Type your email address'),
+                    decoration: const InputDecoration(
+                        hintText: 'Type your email address'),
                     onSaved: (String? val) {
                       email.text = val ?? '';
                     },
@@ -62,7 +63,8 @@ class LoginView extends ConsumerWidget {
                       return null;
                     },
                     controller: password,
-                    decoration: const InputDecoration(hintText: 'Type your password'),
+                    decoration:
+                        const InputDecoration(hintText: 'Type your password'),
                     onSaved: (String? val) {
                       password.text = val ?? '';
                     },
