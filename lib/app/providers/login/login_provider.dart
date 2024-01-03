@@ -1,48 +1,60 @@
 import 'package:fetchly/fetchly.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazyui/lazyui.dart';
 
 import '../../data/api/api.dart';
 import '../../data/services/local/storage.dart';
-import '../../routes/paths.dart';
 
 class Auth with ChangeNotifier, UseApi {
-  final forms = LzForm.make(['email', 'password']);
+  final forms = LzForm.make(['username', 'password']);
 
-  Future login(BuildContext context) async {
+  Future<bool> login() async {
     try {
       final form = LzForm.validate(forms, required: ['*']);
 
       if (form.ok) {
         LzToast.overlay('Logging in...');
         ResHandler res = await authApi.login(form.value);
+        print('${res.request?.log}');
 
         if (!res.status) {
-          return LzToast.show(res.message);
+          LzToast.show(res.message);
+          return false;
         }
 
         String? token = res.body['token'];
 
         if (token != null) {
-          if (!context.mounted) return;
-
           // set token to dio
           dio.setToken(token);
 
           // save token to shared preferences
           prefs.setString('token', token);
-
-          // go to home
-          context.go(Paths.home);
         }
       }
     } catch (e, s) {
       Errors.check(e, s);
+      return false;
     } finally {
       LzToast.dismiss();
     }
+
+    return true;
+  }
+
+  // this method is used to logout from the app
+  // return true if logout is success
+
+  Future<bool> logout() async {
+    // assume that logout is success
+    return true;
+  }
+
+  Future<bool> login2(BuildContext context) async {
+    final form = LzForm.validate(forms, required: ['*']);
+
+    return true;
   }
 }
 

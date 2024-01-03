@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lazyui/lazyui.dart';
 import 'package:todo_app/app/providers/login/login_provider.dart';
+import 'package:todo_app/app/routes/paths.dart';
 
 class LoginView extends ConsumerWidget {
   const LoginView({super.key});
@@ -48,12 +50,16 @@ class LoginView extends ConsumerWidget {
               // form button
               LzButton(
                 text: 'Login',
-                onTap: (state) {
+                onTap: (state) async {
                   // kamu juga bisa menggunakan -> state.submit();
                   // untuk menampilkan animasi loading pada button
                   // lalu state.abort(); untuk menghentikan animasi loading
 
-                  notifier.login(context);
+                  final ok = await notifier.login();
+
+                  if (ok && context.mounted) {
+                    context.go(Paths.home);
+                  }
                 },
               )
             ],

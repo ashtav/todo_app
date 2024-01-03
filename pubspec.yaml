@@ -29,12 +29,15 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
-  fetchly: ^0.0.2
+  dio: ^5.4.0
+  fetchly: ^0.0.4
   flutter:
     sdk: flutter
   go_router: ^10.1.2
   hooks_riverpod: ^2.3.6
-  lazyui: ^1.0.12
+  http_mock_adapter: ^0.6.1
+  lazyui: ^2.0.0
+  mockito: ^5.4.4
   riverpod: ^2.3.6
   shared_preferences: ^2.2.0
 
