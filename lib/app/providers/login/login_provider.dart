@@ -16,6 +16,8 @@ class Auth with ChangeNotifier, UseApi {
       if (form.ok) {
         LzToast.overlay('Logging in...');
         ResHandler res = await authApi.login(form.value);
+        
+        // ignore: avoid_print
         print('${res.request?.log}');
 
         if (!res.status) {
@@ -48,12 +50,6 @@ class Auth with ChangeNotifier, UseApi {
 
   Future<bool> logout() async {
     // assume that logout is success
-    return true;
-  }
-
-  Future<bool> login2(BuildContext context) async {
-    final form = LzForm.validate(forms, required: ['*']);
-
     return true;
   }
 }
